@@ -1,5 +1,6 @@
 package com.qaprosoft.carina.demo.mobile.gui.pages.android;
 
+import com.qaprosoft.carina.demo.mobile.gui.pages.android.users.User;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
@@ -45,6 +46,32 @@ public class LoginPage extends LoginPageBase implements IMobileUtils {
     @Override
     public void typePassword(String password) {
         passwordInputField.type(password);
+    }
+
+    @Override
+    public void typeCredentials(User user) {
+        nameInputField.type(user.getLogin());
+        passwordInputField.type(user.getPassword());
+    }
+
+    @Override
+    public boolean isSelectMaleSexPresent() {
+        return maleRadioBtn.isElementPresent();
+    }
+
+    @Override
+    public boolean isNameInputFieldPresent() {
+        return nameInputField.isElementPresent();
+    }
+
+    @Override
+    public boolean isPasswordInputFieldPresent() {
+        return passwordInputField.isElementPresent();
+    }
+
+    @Override
+    public boolean isCheckPrivacyPolicyCheckboxPresent() {
+        return privacyPolicyCheckbox.isElementPresent();
     }
 
     @Override

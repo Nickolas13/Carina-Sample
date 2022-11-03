@@ -32,4 +32,9 @@ public class WelcomePage extends WelcomePageBase {
         return initPage(getDriver(), LoginPageBase.class);
     }
 
+    @Override
+    public boolean isClickNextBtnPresent(){
+        return nextBtn.isElementPresent();
+    }
+
 }

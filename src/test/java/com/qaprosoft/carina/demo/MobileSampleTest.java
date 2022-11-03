@@ -15,6 +15,7 @@
  */
 package com.qaprosoft.carina.demo;
 
+import com.qaprosoft.carina.demo.mobile.gui.pages.android.users.User;
 import com.zebrunner.agent.core.annotation.TestLabel;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.testng.Assert;
@@ -53,6 +54,7 @@ public class MobileSampleTest implements IAbstractTest, IMobileUtils {
         CarinaDescriptionPageBase carinaDescriptionPage = loginPage.clickLoginBtn();
         Assert.assertTrue(carinaDescriptionPage.isPageOpened(), "Carina description page isn't opened");
     }
+
 
 //	@Test()
 //    @MethodOwner(owner = "qpsdemo")
