@@ -1,6 +1,11 @@
 package com.qaprosoft.carina.demo.mobile.gui.pages.android.users;
 
-public class User {
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+
+public class User{
     private String login;
     private String password;
 
@@ -24,4 +29,6 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
+
 }

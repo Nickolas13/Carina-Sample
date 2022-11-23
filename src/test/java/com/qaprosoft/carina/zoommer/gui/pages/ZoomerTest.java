@@ -2,12 +2,29 @@ package com.qaprosoft.carina.zoommer.gui.pages;
 
 import com.qaprosoft.carina.core.foundation.AbstractTest;
 import com.qaprosoft.carina.zoommer.gui.components.Compare;
+import com.qaprosoft.carina.zoommer.gui.components.Language;
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 
 
 public class ZoomerTest extends AbstractTest {
+
+    @BeforeMethod
+    public void ChangeLanguage(){
+        HomePage homePage = new HomePage(getDriver());
+        homePage.open();
+        Assert.assertTrue(homePage.isPageOpened(),"Page isn't opened");
+        Assert.assertTrue(homePage.isAcceptCookiePresent(),"Cookie agreement button isn't present");
+        homePage.clickAcceptCookie();
+
+        //change language to russian
+        Assert.assertTrue(homePage.isLanguagesMenuButtonPresent(),"Languages Menu isn't present");
+        homePage.hoverLanguagesMenubutton();
+        homePage.selectLanguage(Language.RUSSIAN);
+
+    }
 
     @Test
     public void TestFilterIphonesByCurrentYear(){
@@ -33,14 +50,7 @@ public class ZoomerTest extends AbstractTest {
     @Test
     public void TestFilterIphonesByRam(){
         HomePage homePage = new HomePage(getDriver());
-        homePage.open();
-        Assert.assertTrue(homePage.isPageOpened(),"Page isn't opened");
 
-        //change language to russian
-        Assert.assertTrue(homePage.isLanguagesMenuButtonPresent(),"Languages Menu isn't present");
-        homePage.hoverLanguagesMenubutton();
-        Assert.assertTrue(homePage.isSelectRussianPresent(),"Russian language selection isn't present");
-        homePage.clickSelectRussian();
 
         homePage.hoverNavigationBarElement(0);
 
@@ -53,14 +63,6 @@ public class ZoomerTest extends AbstractTest {
     @Test
     public void TestFindIphoneWithSpecificStorage(){
         HomePage homePage = new HomePage(getDriver());
-        homePage.open();
-        Assert.assertTrue(homePage.isPageOpened(),"Page isn't opened");
-
-        //change language to russian
-        Assert.assertTrue(homePage.isLanguagesMenuButtonPresent(),"Languages Menu isn't present");
-        homePage.hoverLanguagesMenubutton();
-        Assert.assertTrue(homePage.isSelectRussianPresent(),"Russian language selection isn't present");
-        homePage.clickSelectRussian();
 
         homePage.hoverNavigationBarElement(0);
         Assert.assertTrue(homePage.isBrandApplePresent(),"Phone brand Apple isn't present");
@@ -75,19 +77,8 @@ public class ZoomerTest extends AbstractTest {
     @Test
     public void TestCompareTwoPhones(){
         HomePage homePage = new HomePage(getDriver());
-        homePage.open();
-        Assert.assertTrue(homePage.isPageOpened(),"Page isn't opened");
-
-        //change language to russian
-        Assert.assertTrue(homePage.isLanguagesMenuButtonPresent(),"Languages Menu isn't present");
-        homePage.hoverLanguagesMenubutton();
-        Assert.assertTrue(homePage.isSelectRussianPresent(),"Russian language selection isn't present");
-        homePage.clickSelectRussian();
 
         Assert.assertTrue(homePage.isCompareButtonPresent(),"compare button isn't present");
-
-        Assert.assertTrue(homePage.isAcceptCookiePresent(),"Cookie agreement button isn't present");
-        homePage.clickAcceptCookie();
 
         Compare compare = homePage.clickCompareButton();
         Assert.assertTrue(compare.isAddProductButtonPresent(),"add product button isn't present");
@@ -111,42 +102,38 @@ public class ZoomerTest extends AbstractTest {
         compare.clickStartCompareButton();
     }
 
-    @Test
-    public void TestComparingPage(){
-        ComparePage comparePage = new ComparePage(getDriver());
-        comparePage.open();
-        Assert.assertTrue(comparePage.isPageOpened(),"Page isn't opened");
+//    @Test
+//    public void TestComparingPage(){
+//        ComparePage comparePage = new ComparePage(getDriver());
+//        comparePage.open();
+//        Assert.assertTrue(comparePage.isPageOpened(),"Page isn't opened");
+//
+//        //change language to russian
+//        Assert.assertTrue(comparePage.isLanguagesMenuButtonPresent(),"Languages Menu isn't present");
+//        comparePage.hoverLanguagesMenubutton();
 
-        //change language to russian
-        Assert.assertTrue(comparePage.isLanguagesMenuButtonPresent(),"Languages Menu isn't present");
-        comparePage.hoverLanguagesMenubutton();
-        Assert.assertTrue(comparePage.isSelectRussianPresent(),"Russian language selection isn't present");
-        comparePage.clickSelectRussian();
-
-        //accept cookies
-        Assert.assertTrue(comparePage.isAcceptCookiePresent(),"Cookie agreement button isn't present");
-        comparePage.clickAcceptCookie();
-
-        //add samsung to comparison
-        Assert.assertTrue(comparePage.isAddDeviceButtonPresent(),"Add product button isn't present");
-        Compare compare = comparePage.clickAddDeviceButton();
-        Assert.assertTrue(compare.isDeviceSearchBarPresent(),"device search bar isn't present");
-        compare.deviceSearchBarType("Samsung Galaxy S22");
-        Assert.assertTrue(compare.isSearchedSamsungPresent(),"Samsung galaxy s22 isn't present");
-        compare.chooseSearchedSamsung();
-
-        //add iphone to comparison
-        Assert.assertTrue(comparePage.isAddDeviceButtonPresent(),"Add product button isn't present");
-        comparePage.clickAddDeviceButton();
-        Assert.assertTrue(compare.isDeviceSearchBarPresent(),"device search bar isn't present");
-        compare.deviceSearchBarType("Iphone 14");
-        Assert.assertTrue(compare.isSearchedIphonePresent(),"Iphone 14 isn't present");
-        compare.chooseSearchedIphone();
-
-        Assert.assertTrue(comparePage.isShowDifferencesButtonPresent(),"differences button isn't present");
-        comparePage.clickShowDifferencesButton();
-        pause(7);
-
-    }
+//
+//
+//        //add samsung to comparison
+//        Assert.assertTrue(comparePage.isAddDeviceButtonPresent(),"Add product button isn't present");
+//        Compare compare = comparePage.clickAddDeviceButton();
+//        Assert.assertTrue(compare.isDeviceSearchBarPresent(),"device search bar isn't present");
+//        compare.deviceSearchBarType("Samsung Galaxy S22");
+//        Assert.assertTrue(compare.isSearchedSamsungPresent(),"Samsung galaxy s22 isn't present");
+//        compare.chooseSearchedSamsung();
+//
+//        //add iphone to comparison
+//        Assert.assertTrue(comparePage.isAddDeviceButtonPresent(),"Add product button isn't present");
+//        comparePage.clickAddDeviceButton();
+//        Assert.assertTrue(compare.isDeviceSearchBarPresent(),"device search bar isn't present");
+//        compare.deviceSearchBarType("Iphone 14");
+//        Assert.assertTrue(compare.isSearchedIphonePresent(),"Iphone 14 isn't present");
+//        compare.chooseSearchedIphone();
+//
+//        Assert.assertTrue(comparePage.isShowDifferencesButtonPresent(),"differences button isn't present");
+//        comparePage.clickShowDifferencesButton();
+//        pause(7);
+//
+//    }
 
 }

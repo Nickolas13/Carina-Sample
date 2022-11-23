@@ -3,6 +3,7 @@ package com.qaprosoft.carina.zoommer.gui.pages;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.qaprosoft.carina.zoommer.gui.components.Compare;
+import com.qaprosoft.carina.zoommer.gui.components.Language;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
@@ -16,8 +17,10 @@ public class HomePage extends AbstractPage {
     @FindBy(xpath = "/html/body/div[7]/header/div[1]/div/div[2]/div[1]/div")
     ExtendedWebElement languagesMenuButton;
 
-    @FindBy(css = "a[title='RUSSIAN']")
-    ExtendedWebElement selectRussian;
+    @FindBy(css = "a[title='%s']")
+    ExtendedWebElement selectLanguage;
+
+
 
 //    //Navigation Bat Elements
 //    @FindBy(xpath = "/html/body/div[7]/section/div[2]/div[1]/div[1]/div[2]/ul/li[1]/a")
@@ -88,10 +91,11 @@ public class HomePage extends AbstractPage {
         return elementsPresent;
 
     }
-    public boolean isSelectRussianPresent(){
-        return selectRussian.isElementPresent();
-    }
 
+    public void selectLanguage(Language lan){
+        hoverLanguagesMenubutton();
+        selectLanguage.format(lan.getLanguage()).click();
+    }
     public boolean isLanguagesMenuButtonPresent(){
         return languagesMenuButton.isElementPresent();
     }
@@ -99,9 +103,7 @@ public class HomePage extends AbstractPage {
     public void hoverLanguagesMenubutton(){
         languagesMenuButton.hover();
     }
-    public void clickSelectRussian(){
-        selectRussian.click();
-    }
+
 
     public boolean isAcceptCookiePresent(){
         return acceptCookie.isElementPresent();

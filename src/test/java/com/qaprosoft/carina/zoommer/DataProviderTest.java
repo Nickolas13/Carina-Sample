@@ -14,7 +14,8 @@ public class DataProviderTest extends AbstractTest {
     public Object[][] dpMethod(){
         return new Object[][] {
                 {new User("nika","nika")},
-                {new User("gigi","gigi")}};
+                {new User("gigi","gigi")},
+                {new User("beca","beca")}};
     }
 
 
