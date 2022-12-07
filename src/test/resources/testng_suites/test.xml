@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite verbose="1" name="Zoommer tests" parallel="methods" thread-count="4">
+    <test name="Zoommer">
+        <classes>
+            <class name="com.qaprosoft.carina.zoommer.gui.pages.ZoomerTest" />
+        </classes>
+    </test>
+
+</suite>

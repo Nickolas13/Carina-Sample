@@ -3,6 +3,8 @@ package com.qaprosoft.carina.zoommer.gui.pages;
 import com.qaprosoft.carina.core.foundation.AbstractTest;
 import com.qaprosoft.carina.zoommer.gui.components.Compare;
 import com.qaprosoft.carina.zoommer.gui.components.Language;
+import com.qaprosoft.carina.zoommer.gui.components.PhoneBrands;
+import com.qaprosoft.carina.zoommer.gui.components.PhoneSpecs;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -37,12 +39,11 @@ public class ZoomerTest extends AbstractTest {
 
         //element 0 is mobile phone
         homePage.hoverNavigationBarElement(0);
-        Assert.assertTrue(homePage.isBrandApplePresent(),"Phone brand Apple isn't present");
-        ApplePhonesPage applePhonesPage = homePage.clickBrandApple();
-        Assert.assertTrue(applePhonesPage.isSeeMoreReleaseYearsPresent(),"See more button isn't present");
-        applePhonesPage.clickSeeMoreReleaseYears();
-        Assert.assertTrue(applePhonesPage.isCurrentYearChoicePresent(),"Current year isn't present in choices");
-        applePhonesPage.clickCurrentYear();
+        PhonesPage phonesPage = homePage.chooseBrand(PhoneBrands.APPLE);
+        Assert.assertTrue(phonesPage.isSeeMoreReleaseYearsPresent(),"See more button isn't present");
+        phonesPage.clickSeeMoreReleaseYears();
+        Assert.assertTrue(phonesPage.isChooseYearPresent(),"Current year isn't present in choices");
+        phonesPage.clickChosenYear();
     }
 
 
@@ -50,14 +51,11 @@ public class ZoomerTest extends AbstractTest {
     @Test
     public void TestFilterIphonesByRam(){
         HomePage homePage = new HomePage(getDriver());
-
-
         homePage.hoverNavigationBarElement(0);
 
-        Assert.assertTrue(homePage.isBrandApplePresent(),"Phone brand Apple isn't present");
-        ApplePhonesPage applePhonesPage = homePage.clickBrandApple();
-        Assert.assertTrue(applePhonesPage.isRamMemory4GbPresent(),"4gb Ram isn't present");
-        applePhonesPage.clickRamMemory4Gb();
+        PhonesPage phonesPage = homePage.chooseBrand(PhoneBrands.SAMSUNG);
+        Assert.assertTrue(phonesPage.isRamMemoryPresent(PhoneSpecs.RAM4)," Ram isn't present");
+        phonesPage.chooseRamMemory(PhoneSpecs.RAM4);
     }
 
     @Test
@@ -65,13 +63,10 @@ public class ZoomerTest extends AbstractTest {
         HomePage homePage = new HomePage(getDriver());
 
         homePage.hoverNavigationBarElement(0);
-        Assert.assertTrue(homePage.isBrandApplePresent(),"Phone brand Apple isn't present");
-        ApplePhonesPage applePhonesPage = homePage.clickBrandApple();
-        Assert.assertTrue(applePhonesPage.isPhoneMemory256Present(),"Phone memory 256gb isn't present");
-        applePhonesPage.clickPhoneMemory256();
-        Assert.assertTrue(applePhonesPage.isIphone14Present(),"iphone 14 isn't present");
-        applePhonesPage.scrollToIphone14();
-        applePhonesPage.clickIphone14();
+        PhonesPage phonesPage = homePage.chooseBrand(PhoneBrands.SAMSUNG);
+        Assert.assertTrue(phonesPage.isPhoneMemoryPresent(PhoneSpecs.STORAGE256),"Phone memory  isn't present");
+        phonesPage.choosePhoneMemory(PhoneSpecs.STORAGE256);
+
     }
 
     @Test
@@ -102,38 +97,38 @@ public class ZoomerTest extends AbstractTest {
         compare.clickStartCompareButton();
     }
 
-//    @Test
-//    public void TestComparingPage(){
-//        ComparePage comparePage = new ComparePage(getDriver());
-//        comparePage.open();
-//        Assert.assertTrue(comparePage.isPageOpened(),"Page isn't opened");
-//
-//        //change language to russian
-//        Assert.assertTrue(comparePage.isLanguagesMenuButtonPresent(),"Languages Menu isn't present");
-//        comparePage.hoverLanguagesMenubutton();
+    @Test
+    public void TestComparingPage(){
+        ComparePage comparePage = new ComparePage(getDriver());
+        comparePage.open();
+        Assert.assertTrue(comparePage.isPageOpened(),"Page isn't opened");
 
-//
-//
-//        //add samsung to comparison
-//        Assert.assertTrue(comparePage.isAddDeviceButtonPresent(),"Add product button isn't present");
-//        Compare compare = comparePage.clickAddDeviceButton();
-//        Assert.assertTrue(compare.isDeviceSearchBarPresent(),"device search bar isn't present");
-//        compare.deviceSearchBarType("Samsung Galaxy S22");
-//        Assert.assertTrue(compare.isSearchedSamsungPresent(),"Samsung galaxy s22 isn't present");
-//        compare.chooseSearchedSamsung();
-//
-//        //add iphone to comparison
-//        Assert.assertTrue(comparePage.isAddDeviceButtonPresent(),"Add product button isn't present");
-//        comparePage.clickAddDeviceButton();
-//        Assert.assertTrue(compare.isDeviceSearchBarPresent(),"device search bar isn't present");
-//        compare.deviceSearchBarType("Iphone 14");
-//        Assert.assertTrue(compare.isSearchedIphonePresent(),"Iphone 14 isn't present");
-//        compare.chooseSearchedIphone();
-//
-//        Assert.assertTrue(comparePage.isShowDifferencesButtonPresent(),"differences button isn't present");
-//        comparePage.clickShowDifferencesButton();
-//        pause(7);
-//
-//    }
+        //change language to russian
+        Assert.assertTrue(comparePage.isLanguagesMenuButtonPresent(),"Languages Menu isn't present");
+        comparePage.hoverLanguagesMenubutton();
+
+
+
+        //add samsung to comparison
+        Assert.assertTrue(comparePage.isAddDeviceButtonPresent(),"Add product button isn't present");
+        Compare compare = comparePage.clickAddDeviceButton();
+        Assert.assertTrue(compare.isDeviceSearchBarPresent(),"device search bar isn't present");
+        compare.deviceSearchBarType("Samsung Galaxy S22");
+        Assert.assertTrue(compare.isSearchedSamsungPresent(),"Samsung galaxy s22 isn't present");
+        compare.chooseSearchedSamsung();
+
+        //add iphone to comparison
+        Assert.assertTrue(comparePage.isAddDeviceButtonPresent(),"Add product button isn't present");
+        comparePage.clickAddDeviceButton();
+        Assert.assertTrue(compare.isDeviceSearchBarPresent(),"device search bar isn't present");
+        compare.deviceSearchBarType("Iphone 14");
+        Assert.assertTrue(compare.isSearchedIphonePresent(),"Iphone 14 isn't present");
+        compare.chooseSearchedIphone();
+
+        Assert.assertTrue(comparePage.isShowDifferencesButtonPresent(),"differences button isn't present");
+        comparePage.clickShowDifferencesButton();
+        pause(7);
+
+    }
 
 }

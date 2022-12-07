@@ -4,6 +4,7 @@ import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebEleme
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.qaprosoft.carina.zoommer.gui.components.Compare;
 import com.qaprosoft.carina.zoommer.gui.components.Language;
+import com.qaprosoft.carina.zoommer.gui.components.PhoneBrands;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
@@ -52,8 +53,12 @@ public class HomePage extends AbstractPage {
     @FindBy(xpath = "/html/body/div[7]/section/div[2]/div[1]/div[1]/div[2]/ul/li")
     List<ExtendedWebElement> navigationBar;
 
-    @FindBy(xpath = "/html/body/div[7]/section/div[2]/div[1]/div[2]/div/ul[1]/div/li[2]/a")
-    ExtendedWebElement brandApple;
+    @FindBy(linkText = "%s")
+    ExtendedWebElement brand;
+
+
+
+
 
 
     public HomePage(WebDriver driver) {
@@ -75,12 +80,12 @@ public class HomePage extends AbstractPage {
     public void clickNavigationBarElement(int index){
         navigationBar.get(index).click();
     }
-    public boolean isBrandApplePresent(){
-        return brandApple.isElementPresent();
+    public boolean isBrandPresent(PhoneBrands br){
+        return brand.format(br.getPhoneBrand()).isElementPresent();
     }
-    public ApplePhonesPage clickBrandApple(){
-        brandApple.click();
-        return new ApplePhonesPage(getDriver());
+    public PhonesPage chooseBrand(PhoneBrands br){
+        brand.format(br.getPhoneBrand()).click();
+        return new PhonesPage(getDriver());
     }
 
     public boolean[] areNavigationBarElementsPresent(){
