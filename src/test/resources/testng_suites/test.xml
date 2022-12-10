@@ -5,5 +5,4 @@
             <class name="com.qaprosoft.carina.zoommer.gui.pages.ZoomerTest" />
         </classes>
     </test>
-
 </suite>

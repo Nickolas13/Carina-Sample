@@ -1,6 +1,7 @@
 package com.qaprosoft.carina.zoommer.gui.pages;
 
 import com.qaprosoft.carina.core.foundation.AbstractTest;
+import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.qaprosoft.carina.zoommer.gui.components.Compare;
 import com.qaprosoft.carina.zoommer.gui.components.Language;
 import com.qaprosoft.carina.zoommer.gui.components.PhoneBrands;
@@ -11,7 +12,7 @@ import org.testng.annotations.Test;
 
 
 
-public class ZoomerTest extends AbstractTest {
+public class ZoomerTest implements IAbstractTest {
 
     @BeforeMethod
     public void ChangeLanguage(){

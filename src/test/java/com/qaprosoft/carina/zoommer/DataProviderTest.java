@@ -1,6 +1,7 @@
 package com.qaprosoft.carina.zoommer;
 
 import com.qaprosoft.carina.core.foundation.AbstractTest;
+import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.qaprosoft.carina.demo.mobile.gui.pages.android.users.User;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.CarinaDescriptionPageBase;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.LoginPageBase;
@@ -9,7 +10,7 @@ import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-public class DataProviderTest extends AbstractTest {
+public class DataProviderTest implements IAbstractTest {
     @DataProvider(name = "dprovider")
     public Object[][] dpMethod(){
         return new Object[][] {
